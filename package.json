@@ -1,0 +1,30 @@
+{
+  "name": "tnd-bot",
+  "version": "1.0.0",
+  "description": "Official Bot for TND",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mystical-Codez/tnd-bot.git"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "Mystical#8920",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mystical-Codez/tnd-bot/issues"
+  },
+  "homepage": "https://github.com/Mystical-Codez/tnd-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "mysql": "^2.18.1",
+    "request": "^2.88.2",
+    "websocket": "^1.0.33",
+    "ws": "^7.4.3"
+  }
+}
