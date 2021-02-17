@@ -66,7 +66,7 @@ client.once('ready', () => {
 
 client.on('message', msg => {
     if (msg.content.length < 3) return;
-
+    if (msg.author.bot) return;
 	if (msg.content[0] == "$") {
         // all commands should go in here.
         var args = msg.content.split(" ");
