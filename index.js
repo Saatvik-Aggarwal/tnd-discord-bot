@@ -68,7 +68,7 @@ client.on('message', msg => {
     if (msg.content.length < 3) return;
     if (msg.author.bot) {
         //console.log(msg.content);
-        if (msg.content.contains("Revolution")) {
+        if (msg.content.indexOf("Revolution") > 0) {
             msg.reply("Aiming at <@510469810023563288>! Standing by and ready to fire on your mark!");
         }
         return;
