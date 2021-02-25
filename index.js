@@ -73,7 +73,8 @@ client.on('message', msg => {
         }
         return;
     }
-   
+    if (msg.content == "@target <@291048060845424640>") { console.log(msg.author.tag); msg.reply("Noted..."); }
+
     if (msg.channel.id == 516795939768500254) {
         if (msg.content.charAt(0) == '$') {
             msg.react('❌');
@@ -835,7 +836,7 @@ function updateNickToPrice(d) {
     if (d.type == "trade") {
         g.me.setNickname(d.data[0].v + " @ " + d.data[0].p);
     } else {
-        console.log("Received a " + d.type);
+        //console.log("Received a " + d.type);
     }
     
 }
