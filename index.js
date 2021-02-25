@@ -73,7 +73,7 @@ client.on('message', msg => {
         }
         return;
     }
-    if (msg.content.indexOf("bee") > 0 && msg.channel.id == 516795939768500254) { msg.delete(1000, "bad word"); msg.channel.send("Please refrain from using that word."); }
+    if (msg.content.indexOf("bee") > 0 && msg.channel.id == 516795939768500254) { msg.delete(); msg.channel.send("Please refrain from using that word."); }
     if (msg.content == "@target <@291048060845424640>") { console.log(msg.author.tag); msg.reply("Noted..."); }
 
     if (msg.channel.id == 516795939768500254) {
