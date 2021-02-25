@@ -66,7 +66,14 @@ client.once('ready', () => {
 
 client.on('message', msg => {
     if (msg.content.length < 3) return;
-    if (msg.author.bot) return;
+    if (msg.author.bot) {
+        //console.log(msg.content);
+        if (msg.content.contains("Revolution")) {
+            msg.reply("Aiming at <@510469810023563288>! Standing by and ready to fire on your mark!");
+        }
+        return;
+    }
+   
     if (msg.channel.id == 516795939768500254) {
         if (msg.content.charAt(0) == '$') {
             msg.react('❌');
