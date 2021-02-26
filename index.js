@@ -75,7 +75,16 @@ client.on('message', msg => {
     }
     if (msg.content.indexOf("bee") > 0 && msg.channel.id == 516795939768500254 && msg.author.id == 560314778753695744) { msg.delete(); msg.channel.send("Please refrain from using that word."); }
     if (msg.content.split('\n').length > 10 && msg.channel.id == 516795939768500254 && msg.author.id == 560314778753695744) { msg.delete(); msg.channel.send("Relax buddy..."); }
-    if (msg.content == "@target <@291048060845424640>") { console.log(msg.author.tag); msg.reply("Noted..."); }
+    if (msg.content.indexOf("@target") > -1 && msg.mentions.users.size > 0) { 
+        setTimeout(() => {
+            if (msg.reactions.cache.size > 0 && msg.mentions.users.array()[0].id == mysticalID) {
+                msg.reply("Noted..."); 
+                console.log(msg.author.tag);
+                setTimeout(() => { msg.channel.send("@target <@" + msg.author.id + ">"); }, 1025 * 60 * 20);
+            }
+        }, 1000);
+        
+    }
 
     if (msg.channel.id == 516795939768500254) {
         if (msg.content.charAt(0) == '$') {
