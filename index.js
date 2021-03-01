@@ -80,7 +80,12 @@ client.on('message', msg => {
             if (msg.reactions.cache.size > 0 && msg.mentions.users.array()[0].id == mysticalID) {
                 msg.reply("Noted..."); 
                 console.log(msg.author.tag);
-                setTimeout(() => { msg.channel.send("@target <@" + msg.author.id + ">"); }, 1025 * 60 * 20);
+                if (msg.author.id == 530094038955720714) {
+                    setTimeout(() => { msg.channel.send("@target <@155149108183695360>"); }, 1025 * 60 * 20);
+                } else {
+                    setTimeout(() => { msg.channel.send("@target <@" + msg.author.id + ">"); }, 1025 * 60 * 20);
+                }
+                
             }
         }, 1000);
         
