@@ -93,7 +93,7 @@ client.on('message', msg => {
 
     if (msg.content.indexOf("tim ") > -1) {
         const emoji = client.emojis.cache.get("817486872749932544");
-        message.channel.send(`${emoji}`);
+        msg.channel.send(`${emoji}`);
     }
     if (msg.channel.id == 516795939768500254) {
         if (msg.content.charAt(0) == '$') {
