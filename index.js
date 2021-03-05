@@ -892,6 +892,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
         .setImage(reaction.message.attachments.first().proxyURL)
         .setTimestamp()
         .setFooter(reaction.count + " <:squaresfavorite:795726008229429250>");
+
         if (starredMessages.indexOf(reaction.message.id) > -1) {
             sentStarredMessages[starredMessages.indexOf(reaction.message.id)].edit(exampleEmbed);
 
@@ -909,7 +910,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
 client.on('messageReactionRemove', async(reaction, user) => {
     if (reaction.emoji.id == "795726008229429250") {
-        starChannel = client.channels.cache.get('817505997194526790');
+        starChannel = client.channels.cache.get('624409822208458753');
 
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0000ff')
@@ -919,11 +920,12 @@ client.on('messageReactionRemove', async(reaction, user) => {
         .setTimestamp()
         .setFooter(reaction.count + " <:squaresfavorite:795726008229429250>");
 
-        if (starredMessages.indexOf(reaction.message.id) > -1 && reaction.count < 2) {
+        if (starredMessages.indexOf(reaction.message.id) > -1 && reaction.count <= 2) {
 
             sentStarredMessages[starredMessages.indexOf(reaction.message.id)].delete();
             sentStarredMessages.splice(starredMessages.indexOf(reaction.message.id), 1);
             starredMessages.splice(starredMessages.indexOf(reaction.message.id));
+
         } else if (starredMessages.indexOf(reaction.message.id) > -1) {
             sentStarredMessages[starredMessages.indexOf(reaction.message.id)].edit(exampleEmbed);
         }
