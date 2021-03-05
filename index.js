@@ -879,26 +879,54 @@ socket.addEventListener('message', function (event) {
 });
 
 var starredMessages = [];
+var sentStarredMessages = [];
 
 client.on('messageReactionAdd', async (reaction, user) => {
-    if (reaction.emoji.id == "795726008229429250" && reaction.count > 1 && starredMessages.indexOf(reaction.message.id) < 0) {
-        starChannel = client.channels.cache.get('817485079407231009');
-
-        const exampleEmbed = new Discord.MessageEmbed()
-        .setColor('#0000ff')
-        .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL())
-        .setDescription(reaction.message.content)
-        .setImage(reaction.message.attachments.first().proxyURL)
-        .setTimestamp()
-        .setFooter('TND');
+    if (reaction.emoji.id == "795726008229429250" && reaction.count > 2) {
+        starChannel = client.channels.cache.get('817505997194526790');
 
 
-        starChannel.send(exampleEmbed);
-        starredMessages.push(reaction.message.id);
+        if (starredMessages.indexOf(reaction.message.id) > -1) {
+
+            const exampleEmbed = new Discord.MessageEmbed()
+            .setColor('#0000ff')
+            .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL())
+            .setDescription(reaction.message.content)
+            .setImage(reaction.message.attachments.first().proxyURL)
+            .setTimestamp()
+            .setFooter(reaction.count + " <:squaresfavorite:795726008229429250>");
+
+            sentStarredMessages[starredMessages.indexOf(reaction.message.id)].edit(exampleEmbed);
+
+        } else {
+            const exampleEmbed = new Discord.MessageEmbed()
+            .setColor('#0000ff')
+            .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL())
+            .setDescription(reaction.message.content)
+            .setImage(reaction.message.attachments.first().proxyURL)
+            .setTimestamp()
+            .setFooter(reaction.count + " <:squaresfavorite:795726008229429250>");
+            sentStarredMessages.push(await starChannel.send(exampleEmbed));
+            starredMessages.push(reaction.message.id);
+        }
+        
+
+        
+        
+        
     }
 });
 
 client.on('messageReactionRemove', async(reaction, user) => {
+    if (reaction.emoji.id == "795726008229429250") {
+        starChannel = client.channels.cache.get('817505997194526790');
+        if (starredMessages.indexOf(reaction.message.id) > -1 && reaction.count < 2) {
 
+            sentStarredMessages[starredMessages.indexOf(reaction.message.id)].delete();
+
+        } 
+        
+    }
+        
 
 });
