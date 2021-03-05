@@ -93,6 +93,7 @@ client.on('message', msg => {
 
     if (msg.content.indexOf("tim ") > -1) {
         msg.channel.send(msg.content.match(/<:.+?:\d+>/g)[0]);
+        console.log(msg.content.match(/<:.+?:\d+>/g)[0]);
         const emoji = client.emojis.cache.get("817490432719585303");
         msg.channel.send(`${emoji}`);
     }
