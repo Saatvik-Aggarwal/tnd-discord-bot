@@ -882,9 +882,9 @@ var starredMessages = [];
 var sentStarredMessages = [];
 
 client.on('messageReactionAdd', async (reaction, user) => {
-    if (reaction.emoji.id == "795726008229429250" && reaction.count > 6) {
+    if (reaction.emoji.id == "795726008229429250" && reaction.count >= 7) {
         starChannel = client.channels.cache.get('817505997194526790');
-
+        console.log("tim added");
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0000ff')
         .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL())
@@ -920,7 +920,7 @@ client.on('messageReactionRemove', async(reaction, user) => {
         .setTimestamp()
         .setFooter(reaction.count + " tims | " + reaction.message.url);
 
-        if (starredMessages.indexOf(reaction.message.id) > -1 && reaction.count <= 6) {
+        if (starredMessages.indexOf(reaction.message.id) > -1 && reaction.count < 7) {
 
             sentStarredMessages[starredMessages.indexOf(reaction.message.id)].delete();
             sentStarredMessages.splice(starredMessages.indexOf(reaction.message.id), 1);
