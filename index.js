@@ -882,8 +882,8 @@ var starredMessages = [];
 var sentStarredMessages = [];
 
 client.on('messageReactionAdd', async (reaction, user) => {
-    if (reaction.emoji.id == "795726008229429250" && reaction.count > 2) {
-        starChannel = client.channels.cache.get('624409822208458753');
+    if (reaction.emoji.id == "795726008229429250" && reaction.count > 6) {
+        starChannel = client.channels.cache.get('817505997194526790');
 
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0000ff')
@@ -891,7 +891,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
         .setDescription(reaction.message.content)
         .setImage(reaction.message.attachments.first().proxyURL)
         .setTimestamp()
-        .setFooter(reaction.count + " <:squaresfavorite:795726008229429250>");
+        .setFooter(reaction.count + " tims | " + reaction.message.url);
 
         if (starredMessages.indexOf(reaction.message.id) > -1) {
             sentStarredMessages[starredMessages.indexOf(reaction.message.id)].edit(exampleEmbed);
@@ -910,7 +910,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
 client.on('messageReactionRemove', async(reaction, user) => {
     if (reaction.emoji.id == "795726008229429250") {
-        starChannel = client.channels.cache.get('624409822208458753');
+        starChannel = client.channels.cache.get('817505997194526790');
 
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0000ff')
@@ -918,9 +918,9 @@ client.on('messageReactionRemove', async(reaction, user) => {
         .setDescription(reaction.message.content)
         .setImage(reaction.message.attachments.first().proxyURL)
         .setTimestamp()
-        .setFooter(reaction.count + " <:squaresfavorite:795726008229429250>");
+        .setFooter(reaction.count + " tims | " + reaction.message.url);
 
-        if (starredMessages.indexOf(reaction.message.id) > -1 && reaction.count <= 2) {
+        if (starredMessages.indexOf(reaction.message.id) > -1 && reaction.count <= 6) {
 
             sentStarredMessages[starredMessages.indexOf(reaction.message.id)].delete();
             sentStarredMessages.splice(starredMessages.indexOf(reaction.message.id), 1);
