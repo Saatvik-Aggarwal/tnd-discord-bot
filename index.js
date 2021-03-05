@@ -46,6 +46,7 @@ var disabled = false;
 ]
 */
 var g = null;
+var starChannel = null;
 client.once('ready', () => {
     console.log('Ready!');
     client.user.setStatus("Booming");
@@ -53,6 +54,7 @@ client.once('ready', () => {
     console.log("Retrieved Bets!"); 
     client.guilds.fetch('412751760311058433').then(guild => {
         g = guild;
+        starChannel = client.channels.cache.get('817485079407231009');
         request('https://finnhub.io/api/v1/quote?symbol=GME&token=' + process.env.FINNHUB_TOKEN, { json: true }, (err, res, body) => {
             if (err) { return console.log(err); }
     
@@ -63,6 +65,8 @@ client.once('ready', () => {
 
     
 });
+
+
 
 client.on('message', msg => {
     if (msg.content.length < 3) return;
@@ -92,10 +96,7 @@ client.on('message', msg => {
     }
 
     if (msg.content.indexOf("tim ") > -1) {
-        msg.channel.send(msg.content.match(/<:.+?:\d+>/g)[0]);
-        console.log(msg.content.match(/<:.+?:\d+>/g)[0]);
-        const emoji = client.emojis.cache.get("817490432719585303");
-        msg.channel.send(`${emoji}`);
+        msg.channel.send("<:squaresfavorite:795726008229429250>");
     }
     if (msg.channel.id == 516795939768500254) {
         if (msg.content.charAt(0) == '$') {
@@ -877,3 +878,12 @@ socket.addEventListener('message', function (event) {
     updateNickToPrice(JSON.parse(event.data));
 });
 
+var starredMessages = [];
+
+client.on('messageReactionAdd', async (reaction, user) => {
+    if (reaction.emoji.id == "795726008229429250" && reaction.count > 1 && starredMessages.indexOf(reaction.message.id) < 0) {
+        starChannel = client.channels.cache.get('817485079407231009');
+        starChannel.send(reaction.message.content);
+        starredMessages.push(reaction.message.id);
+    }
+});
