@@ -883,7 +883,17 @@ var starredMessages = [];
 client.on('messageReactionAdd', async (reaction, user) => {
     if (reaction.emoji.id == "795726008229429250" && reaction.count > 1 && starredMessages.indexOf(reaction.message.id) < 0) {
         starChannel = client.channels.cache.get('817485079407231009');
-        starChannel.send(reaction.message.content);
+
+        const exampleEmbed = new Discord.MessageEmbed()
+        .setColor('#0000ff')
+        .setTitle(reaction.message.author.tag)
+        .setDescription(reaction.message.content)
+        .setImage(reaction.message.attachments.first().proxyURL)
+        .setTimestamp()
+        .setFooter('----Messages like these represent peak TND----');
+
+
+        starChannel.send(exampleEmbed);
         starredMessages.push(reaction.message.id);
     }
 });
