@@ -887,6 +887,7 @@ client.on('messageReactionAdd', async (reaction, user) => {
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0000ff')
         .setTitle(reaction.message.author.tag)
+        .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL());
         .setDescription(reaction.message.content)
         .setImage(reaction.message.attachments.first().proxyURL)
         .setTimestamp()
