@@ -886,15 +886,19 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0000ff')
-        .setTitle(reaction.message.author.tag)
-        .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL());
+        .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL())
         .setDescription(reaction.message.content)
         .setImage(reaction.message.attachments.first().proxyURL)
         .setTimestamp()
-        .setFooter('----Messages like these represent peak TND----');
+        .setFooter('TND');
 
 
         starChannel.send(exampleEmbed);
         starredMessages.push(reaction.message.id);
     }
+});
+
+client.on('messageReactionRemove', async(reaction, user) => {
+
+
 });
