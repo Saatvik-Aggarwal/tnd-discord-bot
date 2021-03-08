@@ -81,7 +81,7 @@ client.on('message', msg => {
     if (msg.content.split('\n').length > 10 && msg.channel.id == 516795939768500254 && msg.author.id == 560314778753695744) { msg.delete(); msg.channel.send("Relax buddy..."); }
     if (msg.content.indexOf("@target") > -1 && msg.mentions.users.size > 0) { 
         setTimeout(() => {
-            if (msg.reactions.cache.size > 0 && msg.mentions.users.array()[0].id == mysticalID) {
+            if (msg.reactions.cache.size > 0 && msg.mentions.users.array()[0].id == mysticalID || msg.mentions.users.array()[0].id == 530094038955720714) {
                 msg.reply("Noted..."); 
                 console.log(msg.author.tag);
                 if (msg.author.id == 530094038955720714) {
