@@ -4,12 +4,8 @@ const request = require('request');
 const WebSocket = require('ws');
 
 // create a new Discord client
-const client = new Discord.Client({ autofetch: [
-    'MESSAGE_CREATE',
-    'MESSAGE_UPDATE',
-    'MESSAGE_REACTION_ADD',
-    'MESSAGE_REACTION_REMOVE',
-] });
+const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+
 var mysql = require('mysql');
 
 
