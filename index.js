@@ -4,7 +4,7 @@ const request = require('request');
 const WebSocket = require('ws');
 
 // create a new Discord client
-const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'] });
+const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'USER'], fetchAllMembers: true });
 
 var mysql = require('mysql');
 
