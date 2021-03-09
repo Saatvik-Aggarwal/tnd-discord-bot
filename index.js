@@ -887,8 +887,11 @@ client.on('messageReactionAdd', async (reaction, user) => {
         console.log("tim added");
     }
     if (reaction.emoji.id == "795726008229429250" && reaction.count >= 7) {
-        starChannel = client.channels.cache.get('817505997194526790');
+
         
+        starChannel = client.channels.cache.get('817505997194526790');
+        if (reaction.message.partial) await reaction.message.fetch();
+        if (reaction.partial) await reaction.fetch();
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0000ff')
         .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL())
@@ -918,7 +921,8 @@ client.on('messageReactionAdd', async (reaction, user) => {
 client.on('messageReactionRemove', async(reaction, user) => {
     if (reaction.emoji.id == "795726008229429250") {
         starChannel = client.channels.cache.get('817505997194526790');
-
+        if (reaction.message.partial) await reaction.message.fetch();
+        if (reaction.partial) await reaction.fetch();
         const exampleEmbed = new Discord.MessageEmbed()
         .setColor('#0000ff')
         .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL())
