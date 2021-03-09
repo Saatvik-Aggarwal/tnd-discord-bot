@@ -892,9 +892,12 @@ client.on('messageReactionAdd', async (reaction, user) => {
         .setColor('#0000ff')
         .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL())
         .setDescription(reaction.message.content)
-        .setImage(reaction.message.attachments.first().proxyURL)
         .setTimestamp()
         .setFooter(reaction.count + " tims | " + reaction.message.url);
+
+        if (reaction.message.attachments.entries.length > 0) {
+            exampleEmbed.setImage(reaction.message.attachments.first().proxyURL);
+        }
 
         if (starredMessages.indexOf(reaction.message.id) > -1) {
             sentStarredMessages[starredMessages.indexOf(reaction.message.id)].edit(exampleEmbed);
@@ -919,10 +922,13 @@ client.on('messageReactionRemove', async(reaction, user) => {
         .setColor('#0000ff')
         .setAuthor(reaction.message.author.tag, reaction.message.author.avatarURL())
         .setDescription(reaction.message.content)
-        .setImage(reaction.message.attachments.first().proxyURL)
         .setTimestamp()
         .setFooter(reaction.count + " tims | " + reaction.message.url);
 
+        if (reaction.message.attachments.entries.length > 0) {
+            exampleEmbed.setImage(reaction.message.attachments.first().proxyURL);
+        }
+        
         if (starredMessages.indexOf(reaction.message.id) > -1 && reaction.count < 7) {
 
             sentStarredMessages[starredMessages.indexOf(reaction.message.id)].delete();
