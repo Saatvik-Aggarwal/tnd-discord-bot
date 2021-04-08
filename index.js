@@ -508,6 +508,7 @@ client.on('message', msg => {
                     "examples_context": "The Sun is 1 AU away from the sun.",
                     "temperature": 0.0,
                     "documents": [],
+                    "max_tokens": 100,
                     "stop": ["\n", "<|endoftext|>"]
                 }),
                 headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
