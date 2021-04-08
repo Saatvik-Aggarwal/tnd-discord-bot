@@ -459,7 +459,7 @@ client.on('message', msg => {
             // xhr.setRequestHeader();
             // xhr.setRequestHeader();
             // xhr.onload = answerSuccess; 
-            // var question = msg.content.split(command);
+            var question = msg.content.split(command);
             // xhr.send());
 
             
