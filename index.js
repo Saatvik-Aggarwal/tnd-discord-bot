@@ -472,7 +472,7 @@ client.on('message', msg => {
                     "question": question[1].trim(),
                     "examples": [["Who is a retard?", "Sam"], ["Who likes los drogos?", "Pratham Saxena"], ["What is the meaning of life?", "Frik you!"]],
                     "examples_context": "Sam is a retard. Pratham Saxena does drugs.",
-                    "temperature": "0.8"
+                    "temperature": 0.8
                 }),
                 headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
 
@@ -480,7 +480,7 @@ client.on('message', msg => {
             .then( res => res.json() )
             .then( data => {
                 console.log(data); 
-                data = JSON.parse(data);
+                //data = JSON.parse(data);
                 
                 msg.reply(data.answers[0])
             });
