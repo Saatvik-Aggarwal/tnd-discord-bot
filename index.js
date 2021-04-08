@@ -451,6 +451,33 @@ client.on('message', msg => {
             
         } else if (command == "balance" || command == "bal") {
             runCommand(msg, "SELECT balance FROM tnddata WHERE uid='" + msg.author.id + "'", "bal");
+        } else if (command == "ask") {
+            const url = "https://api.openai.com/v1/answers";
+            // var xhr = new XMLHttpRequest();
+            // xhr.open("POST", url, true);
+            // xhr.setRequestHeader();
+            // xhr.setRequestHeader();
+            // xhr.onload = answerSuccess; 
+            // var question = msg.content.split(command);
+            // xhr.send());
+
+            
+              
+
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify({
+                    "model": "davinci",
+                    "question": question,
+                    "examples": [["Who is a retard?", "Sam"], ["Who likes los drogos?", "Pratham Saxena"], ["What is the meaning of life?", "Frik you!"]],
+                    "examples_context": "Sam is a retard. Pratham Saxena does drugs.",
+                    "temperature": "0.8"
+                }),
+                headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
+
+            })
+            .then( res => res.json() )
+            .then( data => msg.reply(data.answers[0]));
         } else {
             msg.reply("Unknown command");
         }
@@ -461,7 +488,9 @@ client.on('message', msg => {
     }
 });
 
-
+function answerSuccess() {
+    msg.reply(JSON.parse(this.reponse))
+}
 function runCommand(msg, cmd, responseAfter) { 
     pool.getConnection(function (err, connection) { 
         if (connection == undefined || connection == null) {
