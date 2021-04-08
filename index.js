@@ -518,7 +518,7 @@ client.on('message', msg => {
                 console.log(data); 
                 //data = JSON.parse(data);
                 
-                msg.reply(data.answers[0])
+                msg.reply(data.answers[0]);
             });
         }
          else {
@@ -528,8 +528,7 @@ client.on('message', msg => {
         
 
         
-    }
-});
+    });
 
 function answerSuccess() {
     msg.reply(JSON.parse(this.reponse))
