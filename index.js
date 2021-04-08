@@ -504,9 +504,9 @@ client.on('message', msg => {
                 body: JSON.stringify({
                     "model": "davinci",
                     "question": question[1].trim(),
-                    "examples": [["What is the distance between the Earth and the sun", "1 AU"]],
+                    "examples": [["What is the distance between the Earth and the sun", "1 AU"], ["What is the derivative of x^2", "2x"]],
                     "examples_context": "The Sun is 1 AU away from the sun.",
-                    "temperature": 0.1,
+                    "temperature": 0.0,
                     "documents": [],
                     "stop": ["\n", "<|endoftext|>"]
                 }),
