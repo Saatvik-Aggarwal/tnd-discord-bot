@@ -470,10 +470,10 @@ client.on('message', msg => {
                 body: JSON.stringify({
                     "model": "davinci",
                     "question": question[1].trim(),
-                    "examples": [["Who is a retard?", "Sam"], ["Who likes los drogos?", "Pratham"], ["What is the meaning of life?", "Frik you!"]],
+                    "examples": [["Who is a retard?", "Sam"], ["Who likes los drogos?", "Pratham"], ["What should I do?", "ur mom"]],
                     "examples_context": "Sam is a retard. Pratham does drugs.",
                     "temperature": 0.8,
-                    "documents": ["Sam", "Pratham", "Saatvik", "Leopold", "Neel", "Sid", "Vincent", "Tim", "Elijah"],
+                    "documents": ["Sam", "Pratham", "Saatvik", "Leopold", "Neel", "Sid", "Vincent", "Tim", "Elijah", "Kevin"],
                     "stop": ["\n", "<|endoftext|>"]
                 }),
                 headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
