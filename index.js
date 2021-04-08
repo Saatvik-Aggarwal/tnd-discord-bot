@@ -469,7 +469,7 @@ client.on('message', msg => {
                 method: "POST",
                 body: JSON.stringify({
                     "model": "davinci",
-                    "question": question,
+                    "question": question[1].trim(),
                     "examples": [["Who is a retard?", "Sam"], ["Who likes los drogos?", "Pratham Saxena"], ["What is the meaning of life?", "Frik you!"]],
                     "examples_context": "Sam is a retard. Pratham Saxena does drugs.",
                     "temperature": "0.8"
