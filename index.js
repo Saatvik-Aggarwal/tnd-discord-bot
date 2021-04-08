@@ -486,7 +486,7 @@ client.on('message', msg => {
                 
                 msg.reply(data.answers[0])
             });
-        } } else if (command == "serious") {
+        } else if (command == "serious") {
             const url = "https://api.openai.com/v1/answers";
             // var xhr = new XMLHttpRequest();
             // xhr.open("POST", url, true);
@@ -527,8 +527,8 @@ client.on('message', msg => {
 
         
 
-        
-    });
+    }  
+ });
 
 function answerSuccess() {
     msg.reply(JSON.parse(this.reponse))
