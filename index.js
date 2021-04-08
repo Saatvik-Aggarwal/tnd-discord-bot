@@ -478,7 +478,11 @@ client.on('message', msg => {
 
             })
             .then( res => res.json() )
-            .then( data => msg.reply(data.answers[0]));
+            .then( data => {
+                data = JSON.parse(data);
+                console.log(data); 
+                msg.reply(data.answers[0])
+            });
         } else {
             msg.reply("Unknown command");
         }
