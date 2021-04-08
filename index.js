@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 const request = require('request');
 const WebSocket = require('ws');
+const fetch = require("node-fetch");
 
 // create a new Discord client
 const client = new Discord.Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'USER'], fetchAllMembers: true });
