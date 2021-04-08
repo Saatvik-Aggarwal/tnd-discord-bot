@@ -473,7 +473,8 @@ client.on('message', msg => {
                     "examples": [["Who is a retard?", "Sam"], ["Who likes los drogos?", "Pratham Saxena"], ["What is the meaning of life?", "Frik you!"]],
                     "examples_context": "Sam is a retard. Pratham Saxena does drugs.",
                     "temperature": 0.8,
-                    "documents": []
+                    "documents": [],
+                    "stop": ["\n", "<|endoftext|>"]
                 }),
                 headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
 
