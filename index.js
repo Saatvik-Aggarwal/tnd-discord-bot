@@ -479,8 +479,9 @@ client.on('message', msg => {
             })
             .then( res => res.json() )
             .then( data => {
-                data = JSON.parse(data);
                 console.log(data); 
+                data = JSON.parse(data);
+                
                 msg.reply(data.answers[0])
             });
         } else {
