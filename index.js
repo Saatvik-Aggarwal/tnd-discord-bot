@@ -472,9 +472,10 @@ client.on('message', msg => {
                     "question": question[1].trim(),
                     "examples": [["Who is a retard?", "Sam"], ["Who likes los drogos?", "Pratham"], ["What should I do?", "ur mom"]],
                     "examples_context": "Sam is a retard. Pratham does drugs.",
-                    "temperature": 0.8,
+                    "temperature": 1,
+                    "max_tokens": 50,
                     "documents": ["Sam", "Pratham", "Saatvik", "Leopold", "Neel", "Sid", "Vincent", "Tim", "Elijah", "Kevin"],
-                    "stop": ["\n", "<|endoftext|>"]
+                    "stop": ["<|endoftext|>"]
                 }),
                 headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
 
@@ -504,12 +505,12 @@ client.on('message', msg => {
                 body: JSON.stringify({
                     "model": "davinci",
                     "question": question[1].trim(),
-                    "examples": [["What is the distance between the Earth and the sun", "1 AU"], ["What is the derivative of x^2", "2x"]],
-                    "examples_context": "The Sun is 1 AU away from the sun.",
-                    "temperature": 0.0,
+                    "examples": [["What is the distance between the Earth and the sun", "1 AU"], ["What is the derivative of x^2", "2x"], ["Who was the first president of the United States?", "George Washington"]],
+                    "examples_context": "The Sun is 1 AU away from the sun. George Washington was the first president of the United States.",
+                    "temperature": 0.05,
                     "documents": [],
-                    "max_tokens": 100,
-                    "stop": ["\n", "<|endoftext|>"]
+                    "max_tokens": 250,
+                    "stop": ["<|endoftext|>"]
                 }),
                 headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
 
