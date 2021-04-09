@@ -470,12 +470,12 @@ client.on('message', msg => {
                 body: JSON.stringify({
                     "model": "davinci",
                     "question": question[1].trim(),
-                    "examples": [["Who is a retard?", "Sam"], ["Who likes los drogos?", "Pratham"], ["What should I do?", "ur mom"]],
+                    "examples": [["Who is a retard?", "Sam"], ["Who likes los drogos?", "Pratham"], ["What should I do?", "ur mom"], ["Tell me a poem", "Bing bong bing bong, sing song sing song, bing bong bing bong"]],
                     "examples_context": "Sam is a retard. Pratham does drugs.",
                     "temperature": 1,
                     "max_tokens": 50,
                     "documents": ["Sam", "Pratham", "Saatvik", "Leopold", "Neel", "Sid", "Vincent", "Tim", "Elijah", "Kevin"],
-                    "stop": ["<|endoftext|>"]
+                    "stop": ["---"]
                 }),
                 headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
 
@@ -510,7 +510,7 @@ client.on('message', msg => {
                     "temperature": 0.05,
                     "documents": [],
                     "max_tokens": 250,
-                    "stop": ["<|endoftext|>"]
+                    "stop": ["---"]
                 }),
                 headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
 
