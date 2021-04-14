@@ -505,11 +505,97 @@ client.on('message', msg => {
                 body: JSON.stringify({
                     "model": "davinci",
                     "question": question[1].trim(),
-                    "examples": [["What is the distance between the Earth and the sun", "1 AU"], ["What is the derivative of x^2", "2x"], ["Who was the first president of the United States?", "George Washington"]],
+                    "examples": [["What is the distance between the Earth and the sun", "1 AU"], ["How does the Constitution begin?", "We the people"], ["Who was the first president of the United States?", "George Washington"]],
                     "examples_context": "The Sun is 1 AU away from the sun. George Washington was the first president of the United States.",
                     "temperature": 0.05,
                     "documents": [],
                     "max_tokens": 250,
+                    "stop": ["---"]
+                }),
+                headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
+
+            })
+            .then( res => res.json() )
+            .then( data => {
+                console.log(data); 
+                //data = JSON.parse(data);
+                
+                msg.reply(data.answers[0]);
+            });
+        }else if (command == "music") {
+            const url = "https://api.openai.com/v1/answers";
+            // var xhr = new XMLHttpRequest();
+            // xhr.open("POST", url, true);
+            // xhr.setRequestHeader();
+            // xhr.setRequestHeader();
+            // xhr.onload = answerSuccess; 
+            var question = msg.content.split(command);
+            // xhr.send());
+
+            
+              
+
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify({
+                    "model": "davinci",
+                    "question": question[1].trim(),
+                    "examples": [["Generate a poem", `We stood by a pond that winter day,
+                    And the sun was white, as though chidden of God,
+                    And a few leaves lay on the starving sod;
+                    – They had fallen from an ash, and were gray.
+                    
+                    Your eyes on me were as eyes that rove
+                    Over tedious riddles of years ago;
+                    And some words played between us to and fro
+                    On which lost the more by our love.
+                    
+                    The smile on your mouth was the deadest thing
+                    Alive enough to have strength to die;
+                    And a grin of bitterness swept thereby
+                    Like an ominous bird a-wing….
+                    
+                    Since then, keen lessons that love deceives,
+                    And wrings with wrong, have shaped to me
+                    Your face, and the God curst sun, and a tree,
+                    And a pond edged with grayish leaves.`],
+
+                    ["Generate a poem", `All the new thinking is about loss.
+                    In this it resembles all the old thinking.
+                    The idea, for example, that each particular erases
+                    the luminous clarity of a general idea. That the clown-
+                    faced woodpecker probing the dead sculpted trunk
+                    of that black birch is, by his presence,
+                    some tragic falling off from a first world
+                    of undivided light. Or the other notion that,
+                    because there is in this world no one thing
+                    to which the bramble of blackberry corresponds,
+                    a word is elegy to what it signifies.
+                    We talked about it late last night and in the voice
+                    of my friend, there was a thin wire of grief, a tone
+                    almost querulous. After a while I understood that,
+                    talking this way, everything dissolves: justice,
+                    pine, hair, woman, you and I. There was a woman
+                    I made love to and I remembered how, holding
+                    her small shoulders in my hands sometimes,
+                    I felt a violent wonder at her presence
+                    like a thirst for salt, for my childhood river
+                    with its island willows, silly music from the pleasure boat,
+                    muddy places where we caught the little orange-silver fish
+                    called pumpkinseed. It hardly had to do with her.
+                    Longing, we say, because desire is full
+                    of endless distances. I must have been the same to her.
+                    But I remember so much, the way her hands dismantled bread,
+                    the thing her father said that hurt her, what
+                    she dreamed. There are moments when the body is as numinous
+                    as words, days that are the good flesh continuing.
+                    Such tenderness, those afternoons and evenings,
+                    saying blackberry, blackberry, blackberry.
+                    `]],
+                    "examples_context": "",
+                    "temperature": 0.5,
+                    "documents": [],
+                    "max_tokens": 500,
                     "stop": ["---"]
                 }),
                 headers: {"Content-Type": "application/json", "Authorization": "Bearer " + process.env.AI_TOKEN }
