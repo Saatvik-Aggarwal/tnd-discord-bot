@@ -540,57 +540,35 @@ client.on('message', msg => {
                 body: JSON.stringify({
                     "model": "davinci",
                     "question": question[1].trim(),
-                    "examples": [["Generate a poem", `We stood by a pond that winter day,
-                    And the sun was white, as though chidden of God,
-                    And a few leaves lay on the starving sod;
-                    – They had fallen from an ash, and were gray.
-                    
-                    Your eyes on me were as eyes that rove
-                    Over tedious riddles of years ago;
-                    And some words played between us to and fro
-                    On which lost the more by our love.
-                    
-                    The smile on your mouth was the deadest thing
-                    Alive enough to have strength to die;
-                    And a grin of bitterness swept thereby
-                    Like an ominous bird a-wing….
-                    
-                    Since then, keen lessons that love deceives,
-                    And wrings with wrong, have shaped to me
-                    Your face, and the God curst sun, and a tree,
-                    And a pond edged with grayish leaves.`],
+                    "examples": [["Write a sonnet", `Shall I compare thee to a summer's day?
+                    Thou art more lovely and more temperate:
+                    Rough winds do shake the darling buds of May,
+                    And summer's lease hath all too short a date:
+                    Sometime too hot the eye of heaven shines,
+                    And often is his gold complexion dimm'd;
+                    And every fair from fair sometime declines,
+                    By chance or nature's changing course untrimm'd;
+                    But thy eternal summer shall not fade
+                    Nor lose possession of that fair thou owest;
+                    Nor shall Death brag thou wander'st in his shade,
+                    When in eternal lines to time thou growest:
+                    So long as men can breathe or eyes can see,
+                    So long lives this and this gives life to thee.`],
 
-                    ["Generate a poem", `All the new thinking is about loss.
-                    In this it resembles all the old thinking.
-                    The idea, for example, that each particular erases
-                    the luminous clarity of a general idea. That the clown-
-                    faced woodpecker probing the dead sculpted trunk
-                    of that black birch is, by his presence,
-                    some tragic falling off from a first world
-                    of undivided light. Or the other notion that,
-                    because there is in this world no one thing
-                    to which the bramble of blackberry corresponds,
-                    a word is elegy to what it signifies.
-                    We talked about it late last night and in the voice
-                    of my friend, there was a thin wire of grief, a tone
-                    almost querulous. After a while I understood that,
-                    talking this way, everything dissolves: justice,
-                    pine, hair, woman, you and I. There was a woman
-                    I made love to and I remembered how, holding
-                    her small shoulders in my hands sometimes,
-                    I felt a violent wonder at her presence
-                    like a thirst for salt, for my childhood river
-                    with its island willows, silly music from the pleasure boat,
-                    muddy places where we caught the little orange-silver fish
-                    called pumpkinseed. It hardly had to do with her.
-                    Longing, we say, because desire is full
-                    of endless distances. I must have been the same to her.
-                    But I remember so much, the way her hands dismantled bread,
-                    the thing her father said that hurt her, what
-                    she dreamed. There are moments when the body is as numinous
-                    as words, days that are the good flesh continuing.
-                    Such tenderness, those afternoons and evenings,
-                    saying blackberry, blackberry, blackberry.
+                    ["Write a sonnet", `Unthrifty loveliness, why dost thou spend
+                    Upon thyself thy beauty's legacy?
+                    Nature's bequest gives nothing but doth lend,
+                    And being frank she lends to those are free.
+                    Then, beauteous niggard, why dost thou abuse
+                    The bounteous largess given thee to give?
+                    Profitless usurer, why dost thou use
+                    So great a sum of sums, yet canst not live?
+                    For having traffic with thyself alone,
+                    Thou of thyself thy sweet self dost deceive.
+                    Then how, when nature calls thee to be gone,
+                    What acceptable audit canst thou leave?
+                    Thy unused beauty must be tomb'd with thee,
+                    Which, used, lives th' executor to be.
                     `]],
                     "examples_context": "",
                     "temperature": 0.5,
