@@ -631,16 +631,17 @@ client.on('message', msg => {
                 });
             }
 
-            if (classes.indexOf(args[1]) == -1) {
-                msg.reply("Invalid class. Options are: " + classes.toString());
-                return;
-            } 
+            
 
             if (args[0] == "add") {
                 if (args.length != 4) {
                     msg.reply("Format: $schedule add class teacher period");
                     return;
                 }
+                if (classes.indexOf(args[1]) == -1) {
+                    msg.reply("Invalid class. Options are: " + classes.toString());
+                    return;
+                } 
                 
                 pool.getConnection(function (err, connection) { 
                     if (connection == undefined || connection == null) {
@@ -689,7 +690,10 @@ client.on('message', msg => {
                     msg.reply("Format: $schedule period period# class teacher");
                     return;
                 }
-
+                if (classes.indexOf(args[2]) == -1) {
+                    msg.reply("Invalid class. Options are: " + classes.toString());
+                    return;
+                } 
                 pool.getConnection(function (err, connection) { 
                     if (connection == undefined || connection == null) {
                         console.log("A connection could not be made to the server at this time");
@@ -720,6 +724,10 @@ client.on('message', msg => {
                     msg.reply("Format: $schedule class classname");
                     return;
                 }
+                if (classes.indexOf(args[1]) == -1) {
+                    msg.reply("Invalid class. Options are: " + classes.toString());
+                    return;
+                } 
 
                 pool.getConnection(function (err, connection) { 
                     if (connection == undefined || connection == null) {
