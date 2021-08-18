@@ -720,7 +720,7 @@ client.on('message', msg => {
                     }
                 });  
             } else if (args[0] == "class") {
-                if (args.length != 3) {
+                if (args.length != 2) {
                     msg.reply("Format: $schedule class classname");
                     return;
                 }
@@ -756,7 +756,7 @@ client.on('message', msg => {
                 });
             }
             else if (args[0] == "teacher") {
-                if (args.length != 3) {
+                if (args.length != 2) {
                     msg.reply("Format: $schedule teacher teachername");
                     return;
                 }
