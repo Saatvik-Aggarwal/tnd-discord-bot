@@ -600,6 +600,187 @@ client.on('message', msg => {
                 
                 msg.reply(data.answers[0]);
             });
+        } else if (command == "schedule") {
+            // $schedule add class period
+            if (args.length < 2) {
+                msg.reply("Format: $schedule add class teacher period");
+                return;
+            }
+
+            var classes = ["DE", "POLISCI", "MATH150", "APSTATS", "APPHYSICSC", "BAND", "AFJROTC", "APLIT", "APSTATS", "ANATOMY", "APWORLD", "APPSYCH", "APES", "APGOV", "MIRAENG", "APAH", "FILMARTS", "GRAPHICDES"]
+
+            if (args[0] == "setup" && msg.author.id == mysticalID) {
+                pool.getConnection(function (err, connection) { 
+                    if (connection == undefined || connection == null) {
+                        msg.reply("A connection could not be made to the server at this time");
+                    } else {
+            
+                        var result = connection.query("CREATE TABLE schedules (uid TINYTEXT, class TINYTEXT, teacher TINYTEXT, period INT NOT NULL)", function (err, result, fields) {
+                            if (err) { 
+                                msg.reply("Something went really wrong."); 
+                                console.log(err);
+                                return;
+                            } else {
+                                msg.reply("Access granted and table successfully created.");
+                                return;
+                            }
+                        });
+                        connection.release();
+            
+                    }
+                });
+            }
+
+            if (classes.indexOf(args[1]) == -1) {
+                msg.reply("Invalid class. Options are: " + classes.toString());
+                return;
+            } 
+
+            if (args[0] == "add") {
+                if (args.length != 4) {
+                    msg.reply("Format: $schedule add class teacher period");
+                    return;
+                }
+                
+                pool.getConnection(function (err, connection) { 
+                    if (connection == undefined || connection == null) {
+                        msg.reply("A connection could not be made to the server at this time");
+                    } else {
+                        //"INSERT INTO tnddata (uid, balance, positions) VALUES (" + msg.mentions.users.array()[0].id + ", 1000, '')";
+                        var result = connection.query("INSERT INTO schedules (uid, class, teacher, period) VALUES ('" + msg.author.id + "', '" + args[1] + "', " + "'" + args[2] + "', " + args[3] + " )", function (err, result, fields) {
+                            if (err) { 
+                                msg.reply("Something went really wrong."); 
+                                console.log(err);
+                                return;
+                            } else {
+                                msg.reply("Successfully added class.");
+                                return;
+                            }
+                        });
+                        connection.release();
+            
+                    }
+                });
+                
+            } else if (args[0] == "reset") {
+
+                pool.getConnection(function (err, connection) { 
+                    if (connection == undefined || connection == null) {
+                        msg.reply("A connection could not be made to the server at this time");
+                    } else {
+                        //"INSERT INTO tnddata (uid, balance, positions) VALUES (" + msg.mentions.users.array()[0].id + ", 1000, '')";
+                        var result = connection.query("DELETE FROM schedules WHERE uid='" + msg.author.id + "'", function (err, result, fields) {
+                            if (err) { 
+                                msg.reply("Something went really wrong."); 
+                                console.log(err);
+                                return;
+                            } else {
+                                msg.reply("Successfully removed all your classes.");
+                                return;
+                            }
+                        });
+                        connection.release();
+                        return;
+            
+                    }
+                });
+            } else if (args[0] == "period") {
+                if (args.length != 4) {
+                    msg.reply("Format: $schedule period period# class teacher");
+                    return;
+                }
+
+                pool.getConnection(function (err, connection) { 
+                    if (connection == undefined || connection == null) {
+                        console.log("A connection could not be made to the server at this time");
+                    } else {
+            
+                        var result = connection.query("SELECT uid FROM schedules WHERE period='" + args[1] + "' AND class='" + args[2] +"' AND teacher='" + args[3] + "'" , function (err, result, fields) {
+                            if (err) { 
+                                console.log("Something went really wrong."); 
+                                console.log(err);
+                                return;
+                            }
+                            var reply = "**List of people in " + args[3] + " " + args[2] + " P" + args[1] + ":** \n";
+            
+                            result.forEach(function(row) {
+                                reply += "<@" + row.uid + "> , ";
+                            });
+            
+                            msg.reply(reply);
+                            return;
+            
+                        });
+                        connection.release();
+            
+                    }
+                });  
+            } else if (args[0] == "class") {
+                if (args.length != 3) {
+                    msg.reply("Format: $schedule class classname");
+                    return;
+                }
+
+                pool.getConnection(function (err, connection) { 
+                    if (connection == undefined || connection == null) {
+                        console.log("A connection could not be made to the server at this time");
+                    } else {
+            
+                        var result = connection.query("SELECT uid, teacher, period FROM schedules WHERE class='" + args[1] +"'" , function (err, result, fields) {
+                            if (err) { 
+                                console.log("Something went really wrong."); 
+                                console.log(err);
+                                return;
+                            }
+                            var reply = "**List of people in " + args[1] + ":** \n";
+            
+                            result.forEach(function(row) {
+                                    reply += "<@" + row.uid + "> (" + row.teacher + " [" + row.period + "]), ";                              
+                            });
+            
+                            msg.reply(reply);
+                            return;
+            
+                        });
+                        connection.release();
+            
+                    }
+                });
+            }
+            else if (args[0] == "teacher") {
+                if (args.length != 3) {
+                    msg.reply("Format: $schedule teacher teachername");
+                    return;
+                }
+
+                pool.getConnection(function (err, connection) { 
+                    if (connection == undefined || connection == null) {
+                        console.log("A connection could not be made to the server at this time");
+                    } else {
+            
+                        var result = connection.query("SELECT uid, class, period FROM schedules WHERE teacher='" + args[1] +"'" , function (err, result, fields) {
+                            if (err) { 
+                                console.log("Something went really wrong."); 
+                                console.log(err);
+                                return;
+                            }
+                            var reply = "**List of people with " + args[1] + ":** \n";
+            
+                            result.forEach(function(row) {
+                                reply += "<@" + row.uid + "> (" + row.class + " [" + row.period + "]), ";                                
+                            });
+            
+                            msg.reply(reply);
+                            return;
+            
+                        });
+                        connection.release();
+            
+                    }
+                });
+            }
+            
+
         }
          else {
             msg.reply("Unknown command");
