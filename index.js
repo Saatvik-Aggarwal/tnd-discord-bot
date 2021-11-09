@@ -61,10 +61,10 @@ client.once('ready', () => {
             if (err) { return console.log(err); }
     
             //g.me.setNickname("GME: " + body.c);
-
+            g.me.setNickname("TND Bot");
         });
     });
-    g.me.setNickname("TND Bot");
+    
     
 });
 
