@@ -60,11 +60,11 @@ client.once('ready', () => {
         request('https://finnhub.io/api/v1/quote?symbol=GME&token=' + process.env.FINNHUB_TOKEN, { json: true }, (err, res, body) => {
             if (err) { return console.log(err); }
     
-            g.me.setNickname("GME: " + body.c);
-    
+            //g.me.setNickname("GME: " + body.c);
+
         });
     });
-
+    g.me.setNickname("TND Bot");
     
 });
 
@@ -1198,7 +1198,8 @@ function retrieveBets() {
 
 function updateNickToPrice(d) {
     if (d.type == "trade") {
-        g.me.setNickname(d.data[0].v + " @ " + d.data[0].p);
+        // we no longer want to change the nick to price
+        //g.me.setNickname(d.data[0].v + " @ " + d.data[0].p);
     } else {
         //console.log("Received a " + d.type);
     }
